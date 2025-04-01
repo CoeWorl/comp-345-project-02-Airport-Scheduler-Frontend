@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AirportschedulerApplication<airport>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.cor.airport.AirportschedulerApplication",
+      "projectName": "airport",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
