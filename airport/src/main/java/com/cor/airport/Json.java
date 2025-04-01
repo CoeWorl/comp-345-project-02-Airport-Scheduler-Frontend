@@ -7,16 +7,21 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
+@RequestMapping("/api")
 public class Json {
+    private static final String FILE_PATH = "src/main/resources/static/airport1.json";
 
-    @GetMapping("/api")
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -35,7 +40,27 @@ public class Json {
         return  mapper.readValue(new File(filename), classToBeCreated);
     }
 
-    public static void main(String[] args) {
-        System.out.println(UUID.randomUUID());
+
+    @GetMapping("/getAirport")
+    public ResponseEntity<String> getJsonAsString() {
+    try {
+        // Read the entire JSON file as a raw string
+        String json = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(FILE_PATH)));
+        return ResponseEntity.ok(json);
+    } catch (IOException e) {
+        return ResponseEntity.status(500).body("Error reading JSON file");
+    }
+}
+
+    @PostMapping("/airport")
+    public ResponseEntity<String> fetchJson(@RequestBody Map<String, Object> json) {        
+        try {
+            String jsonString = toJsonString(json);
+            System.out.println(jsonString);
+        }
+        catch (JsonProcessingException e){
+            return ResponseEntity.status(500).body(null);
+        }
+        return ResponseEntity.ok("JSON received successfully");        
     }
 }

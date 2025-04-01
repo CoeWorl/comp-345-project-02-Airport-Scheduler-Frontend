@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch JSON File</title>
+  </head>
+  <body>
+    <h1>JSON Data from Server</h1>
+    <button onclick="fetchJson()">Fetch JSON</button>
+    <pre id="jsonOutput">Click to load JSON</pre>
+
+    <script>
+      function fetchJson() {
+        fetch("/api/getAirport")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("jsonOutput").textContent = data;
+          })
+          .catch((error) => {
+            console.error("Error fetching JSON:", error);
+            document.getElementById("jsonOutput").textContent =
+              "Failed to load JSON.";
+          });
+      }
+    </script>
+  </body>
+</html>
