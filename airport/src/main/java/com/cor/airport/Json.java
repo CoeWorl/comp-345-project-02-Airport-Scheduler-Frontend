@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/api")
 public class Json {
-    private static final String FILE_PATH = "src/main/resources/static/airport1.json";
+    private static final String FILE_PATH = "src/main/resources/static/1.json";
 
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
