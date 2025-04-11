@@ -1,5 +1,8 @@
 package com.cor.airport;
 
+import com.cor.airport.layout.Business;
+import com.cor.airport.layout.Gate;
+import com.cor.airport.layout.POI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +24,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequestMapping("/api")
 public class Json {
     private static final String FILE_PATH = "src/main/resources/static/1.json";
+
+    public static POI jsonPOI(UUID poiUuid, String airportCode) throws IOException {
+        return switch (poiUuid.toString().charAt(0)) {
+            case 'a' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+            case 'b' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            default -> null;
+        };
+    }
 
     public static String toJsonString(Object objectToSerialize) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
