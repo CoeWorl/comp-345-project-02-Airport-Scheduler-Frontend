@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Airport 1 layout</title>
+    <style>
+      svg {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+      }
+      .gate {
+        fill: blue;
+      }
+      .airport {
+        fill: honeydew;
+      }
+      .terminal {
+        fill: #aaa;
+        opacity: 0.6;
+      }
+      text {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Airport Layout</h1>
+    <svg width="800" height="600" xmlns="http:/www.w3.org/2000/svg">
+      <!-- Airport -->
+      <th:block th:each="airport : ${layout.airport}">
+        <rect
+          class="airport"
+          th:attr="x=${airport.x}, y=${airport.y}, width=${airport.width}, height=${airport.height}"
+        />
+        <text
+          th:attr="x=${airport.x + 5}, y=${airport.y + 15}"
+          th:text="${airport.name}"
+        />
+      </th:block>
+
+      <!-- Terminals -->
+      <th:block th:each="terminal : ${layout.terminals}">
+        <rect
+          class="terminal"
+          th:attr="x=${terminal.x}, y=${terminal.y}, width=${terminal.width}, height=${terminal.height}"
+        />
+        <text
+          th:attr="x=${terminal.x + 5}, y=${terminal.y + 15}"
+          th:text="${terminal.id}"
+        />
+      </th:block>
+
+      <!-- Gates -->
+      <th:block th:each="gate : ${layout.gates}">
+        <rect
+          class="gate"
+          th:attr="x=${gate.x}, y=${gate.y}, width=${gate.width}, height=${gate.height}"
+        />
+        <text
+          th:attr="x=${gate.x + 5}, y=${gate.y + 15}"
+          th:text="${gate.id}"
+        />
+      </th:block>
+    </svg>
+  </body>
+</html>
