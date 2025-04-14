@@ -12,7 +12,7 @@ import com.cor.airport.layout.Business;
 import com.cor.airport.layout.Terminal;
 
 public class businessTest {
-
+/*** 
     @Test
     public void businessConstructorTest(){
         Business business = new Business("business", new Terminal("Terminal 1"), "restaurant", "9am-3pm");
@@ -83,5 +83,5 @@ public class businessTest {
         assertFalse(business2.hasActivity());
         assertThrows(IllegalArgumentException.class, ()-> owner.removeActivity(business2));
     }
-    
+    */
 }

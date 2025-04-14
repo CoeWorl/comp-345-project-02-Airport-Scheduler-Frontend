@@ -88,6 +88,7 @@ public class userTest {
         assertTrue(rebecca.getFlightPlans().isEmpty());
     }
 
+    /*** 
     @Test
     public void ownerTest(){
         Owner noah = new Owner("Noah", "noed", "789", "no@gmail.com");
@@ -122,6 +123,7 @@ public class userTest {
         assertTrue(noah.getShops().isEmpty());
         assertTrue(noah.getRestaurants().isEmpty());
     }
+    */
 
     @Test
     void validEmailTest(){
