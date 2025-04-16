@@ -1,24 +1,34 @@
 package com.cor.airport.layout;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.springframework.stereotype.Service;
 
-import com.cor.airport.AirportController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class LayoutService {
-    private final AirportController airportLayout;
+    private final Airport airportLayout;
 
     public LayoutService() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        InputStream is = getClass().getResourceAsStream("/resources/static/airport1.json");
-        this.airportLayout = mapper.readValue(is, AirportController.class);
+        System.out.println("Trying to read airport.json...");
+
+        try (InputStream is = getClass().getResourceAsStream("/airport.json")) {
+            System.out.println("InputStream is null? " + (is == null));
+            if (is == null) {
+                throw new FileNotFoundException("airport.json not found.");
+            }
+            this.airportLayout = mapper.readValue(is, Airport.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load layout", e);
+        }
     }
 
-    public AirportController getAirportController() {
+    public Airport getAirportLayout() {
         return airportLayout;
     }
 }

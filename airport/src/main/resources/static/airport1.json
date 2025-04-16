@@ -1,4 +1,66 @@
 {
-  "name": "Terminal 1",
-  "uuid": "2fc59d7c-849b-446f-adb1-0702682237c3"
+  "name": "JFK",
+  "uuid": "2fc59d7c-849b-446f-adb1-0702682237c3",
+  "terminals": {
+    "name": "Terminal 1",
+    "number": 1,
+    "uuid": "efc59d7c-849b-446f-adb1-0702682237c3",
+    "airport": "JFK",
+    "entrances": ["aeebc26c-96cd-40a6-9055-9b2a164db481"],
+    "poi": {
+      "aeebc26c-96cd-40a6-9055-9b2a164db481": [
+        {
+          "weight": 5,
+          "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
+        },
+        {
+          "weight": 7,
+          "uuid": "ba05ecb7-879b-44dc-baab-e476bc30bca0"
+        }
+      ],
+      "b624702e-eb27-4392-817a-2e0cc01c28e1": [
+        {
+          "weight": 5,
+          "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
+        },
+        {
+          "weight": 5,
+          "uuid": "acace207-152a-4042-85f6-b43234da2417"
+        }
+      ],
+      "ba05ecb7-879b-44dc-baab-e476bc30bca0": [
+        {
+          "weight": 7,
+          "uuid": "aeebc26c-96cd-40a6-9055-9b2a164db481"
+        },
+        {
+          "weight": 2,
+          "uuid": "acace207-152a-4042-85f6-b43234da2417"
+        }
+      ],
+      "acace207-152a-4042-85f6-b43234da2417": [
+        {
+          "weight": 5,
+          "uuid": "b624702e-eb27-4392-817a-2e0cc01c28e1"
+        }
+      ]
+    },
+    "gates": {
+      "A1": {
+        "uuid": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+        "weight": 5,
+        "flights": [
+          {
+            "flightNumber": "AA1234",
+            "src": "JFK",
+            "dest": "LAX",
+            "departureTime": "2023-10-01T10:00:00Z",
+            "arrivalTime": "2023-10-01T13:00:00Z",
+            "status": "on-time"
+          }
+        ],
+        "isEntranceToTerminal": "false"
+      }
+    }
+  }
 }

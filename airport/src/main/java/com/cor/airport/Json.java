@@ -3,6 +3,8 @@ package com.cor.airport;
 import com.cor.airport.layout.Business;
 import com.cor.airport.layout.Gate;
 import com.cor.airport.layout.POI;
+import com.cor.airport.layout.Restroom;
+import com.cor.airport.layout.Stairs;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,15 +22,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 @RestController
 @RequestMapping("/api")
 public class Json {
-    private static final String FILE_PATH = "src/main/resources/static/1.json";
+    private static final String FILE_PATH = "src/main/resources/JFK/1.json";
 
     public static POI jsonPOI(UUID poiUuid, String airportCode) throws IOException {
         return switch (poiUuid.toString().charAt(0)) {
-            case 'a' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
-            case 'b' -> Json.fromJsonFile("src/test/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            case 'a' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+            case 'b' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            case 'c' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+            case 'e' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
             default -> null;
         };
     }

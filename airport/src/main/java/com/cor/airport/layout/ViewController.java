@@ -15,7 +15,7 @@ public class ViewController {
 
     @GetMapping("/layout-view")
     public String showLayout(Model model) {
-        model.addAttribute("layout", layoutService.getAirportController());
+        model.addAttribute("layout", layoutService.getAirportLayout());
         return "layout"; // layout.html
     }
 }

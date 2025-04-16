@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.cor.airport.AirportController;
 
 @RestController
 @RequestMapping("/api/layout")
@@ -17,7 +16,7 @@ public class LayoutController {
     }
 
     @GetMapping
-    public AirportController getController() {
-        return layoutService.getAirportController();
+    public Airport getController() {
+        return layoutService.getAirportLayout();
     }
 }
