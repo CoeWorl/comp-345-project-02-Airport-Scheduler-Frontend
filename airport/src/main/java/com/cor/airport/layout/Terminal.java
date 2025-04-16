@@ -41,7 +41,7 @@ public class Terminal {
 
         this.entrances = new ArrayList<>();
         for (String entranceUuid : entranceUuids) {
-            Gate gate = Json.fromJsonFile("src/main/resources/" + this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
+            Gate gate = Json.fromJsonFile(this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
             this.entrances.add(gate);
             this.poi.put(gate.getUuid(), gate);
         }
@@ -53,10 +53,10 @@ public class Terminal {
             POI poi;
             // Create POI object (read from file)
             poi = switch (poiUuid.toString().charAt(0)) {
-                case 'a' -> Json.fromJsonFile("src/main/resources/" + this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
-                case 'b' -> Json.fromJsonFile("src/main/resources/" + this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
-                case 'c' -> Json.fromJsonFile("src/main/resources/" + this.airport + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
-                case 'e' -> Json.fromJsonFile("src/main/resources/" + this.airport + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
+                case 'a' -> Json.fromJsonFile( this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+                case 'b' -> Json.fromJsonFile( this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
+                case 'c' -> Json.fromJsonFile( this.airport + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+                case 'e' -> Json.fromJsonFile( this.airport + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
                 default -> null;
             };
             if (poi==null) System.err.println("Unknown POI: " + poiUuid);

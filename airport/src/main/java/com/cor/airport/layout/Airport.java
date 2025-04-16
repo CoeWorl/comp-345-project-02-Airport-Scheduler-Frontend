@@ -14,16 +14,20 @@ public class Airport {
     private final String code;
     private final String name;
     private final UUID uuid;
+    private final String city;
+    private final String country;
     private final Map<Integer, Terminal> terminals;
     private final Map<UUID, List<Connection>> entranceConnections;
     // poiUUID: connection list
     // no terminal distinction, since airports might have a small number of terminals and at most
     // a couple hundred entrances, so it's not worth the extra complexity
 
-    public Airport(String code, String name) {
+    public Airport(String code, String name, String city, String county) {
         this.code = code;
         this.name = name;
         this.uuid = UUID.randomUUID();
+        this.city = city;
+        this.country = county;
         this.terminals = new HashMap<>();
         this.entranceConnections = new HashMap<>();
     }
@@ -32,11 +36,15 @@ public class Airport {
     public Airport(@JsonProperty("code") String code,
                    @JsonProperty("name") String name,
                    @JsonProperty("uuid") UUID uuid,
+                   @JsonProperty("city") String city,
+                   @JsonProperty("country") String country,
                    @JsonProperty("terminals") List<Integer> terminals,
                    @JsonProperty("entranceConnections") Map<UUID, List<Map<String, Object>>> entranceConnections) throws IOException {
         this.code = code;
         this.name = name;
         this.uuid = uuid;
+        this.city = city;
+        this.country = country;
         this.terminals = new HashMap<>();
         for (Integer t: terminals) {
             String path = this.code + "/" + t + ".json";
@@ -68,6 +76,14 @@ public class Airport {
 
     public UUID getUuid() {
         return uuid;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public Map<Integer, Terminal> getTerminals() {

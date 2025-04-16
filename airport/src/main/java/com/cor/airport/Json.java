@@ -30,10 +30,10 @@ public class Json {
 
     public static POI jsonPOI(UUID poiUuid, String airportCode) throws IOException {
         return switch (poiUuid.toString().charAt(0)) {
-            case 'a' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
-            case 'b' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
-            case 'c' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
-            case 'e' -> Json.fromJsonFile("src/main/resources/" + airportCode + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
+            case 'a' -> Json.fromJsonFile( airportCode + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+            case 'b' -> Json.fromJsonFile( airportCode + "/POI/Business/" + poiUuid + ".json", Business.class);
+            case 'c' -> Json.fromJsonFile( airportCode + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+            case 'e' -> Json.fromJsonFile( airportCode + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
             default -> null;
         };
     }
