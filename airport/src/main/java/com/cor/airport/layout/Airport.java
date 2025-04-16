@@ -7,7 +7,7 @@ import com.cor.airport.Json;
 
 
 import java.io.IOException;
-import java.io.InputStream;
+//import java.io.InputStream;
 import java.util.*;
 
 public class Airport {
@@ -40,8 +40,6 @@ public class Airport {
         this.terminals = new HashMap<>();
         for (Integer t: terminals) {
             String path = this.code + "/" + t + ".json";
-            InputStream is = getClass().getClassLoader().getResourceAsStream(path);
-            if (is == null) throw new IOException("Could not find terminal JSON: " + path);
             Terminal terminal = Json.fromJsonFile(path, Terminal.class);
             this.terminals.put(t, terminal);
         }

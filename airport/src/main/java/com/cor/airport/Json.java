@@ -53,7 +53,13 @@ public class Json {
     public static <T> T fromJsonFile(String filename, Class<? extends T> classToBeCreated) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return  mapper.readValue(new File(filename), classToBeCreated);
+        ClassLoader classLoader = Json.class.getClassLoader();
+        try (var is = classLoader.getResourceAsStream(filename)){
+            if (is == null) {
+                throw new IOException("File not found: " + filename);
+            }
+            return  mapper.readValue(is, classToBeCreated);
+        }
     }
 
 
