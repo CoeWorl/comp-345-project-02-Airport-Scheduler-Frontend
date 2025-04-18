@@ -23,43 +23,46 @@
     </style>
   </head>
   <body>
-    <h1>Airport Layout</h1>
-    <svg width="800" height="600" xmlns="http:/www.w3.org/2000/svg">
-      <!-- Airport -->
-      <th:block th:each="airport : ${layout.airport}">
-        <rect
-          class="airport"
-          th:attr="x=${airport.x}, y=${airport.y}, width=${airport.width}, height=${airport.height}"
-        />
-        <text
-          th:attr="x=${airport.x + 5}, y=${airport.y + 15}"
-          th:text="${airport.name}"
-        />
-      </th:block>
+    <h1
+      th:text="'Welcome to ' + ${layout.name} + ' Airport in ' + ${layout.city} + ', ' + ${layout.country}"
+    >
+      Airport Info
+    </h1>
 
-      <!-- Terminals -->
-      <th:block th:each="terminal : ${layout.terminals}">
-        <rect
-          class="terminal"
-          th:attr="x=${terminal.x}, y=${terminal.y}, width=${terminal.width}, height=${terminal.height}"
-        />
-        <text
-          th:attr="x=${terminal.x + 5}, y=${terminal.y + 15}"
-          th:text="${terminal.id}"
-        />
-      </th:block>
+    <h2>Terminals</h2>
+    <ul>
+      <li th:each="entry : ${layout.terminals}">
+        <p>
+          <strong
+            th:text="'Terminal ' + ${entry.key} + ': ' + ${entry.value.name}"
+          ></strong>
+          <br />UUID: <span th:text="${entry.value.uuid}"></span> <br />Airport:
+          <span th:text="${entry.value.airport}"></span>
+        </p>
 
-      <!-- Gates -->
-      <th:block th:each="gate : ${layout.gates}">
-        <rect
-          class="gate"
-          th:attr="x=${gate.x}, y=${gate.y}, width=${gate.width}, height=${gate.height}"
-        />
-        <text
-          th:attr="x=${gate.x + 5}, y=${gate.y + 15}"
-          th:text="${gate.id}"
-        />
-      </th:block>
-    </svg>
+        <h4>Entrances</h4>
+        <ul>
+          <li th:each="gate : ${entry.value.entrances}">
+            <span th:text="'Gate UUID: ' + ${gate.uuid}"></span>
+          </li>
+        </ul>
+
+        <h4>Point Of Interests</h4>
+        <ul>
+          <li th:each="poiEntry : ${entry.value.poi}">
+            <span th:text="'POI UUID: ' + ${poiEntry.key}"></span> -
+            <span th:text="${poiEntry.value.name}"></span>
+          </li>
+        </ul>
+
+        <h4>Gates</h4>
+        <ul>
+          <li th:each="gate : ${entry.value.Gates}">
+            <span th:text="'Gate UUID: ' + ${gate.uuid}"></span>
+            <br />Name: <span th:text="${gate.name}"></span>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </body>
 </html>
