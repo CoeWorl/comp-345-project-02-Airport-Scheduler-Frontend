@@ -1,20 +1,31 @@
 package com.cor.airport;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.cor.airport.layout.Airport;
 import com.cor.airport.layout.POI;
+import com.cor.airport.layout.Terminal;
 
 public class Schedule {
-    private long deptTime; // Unix timestamp
-    private List<POI> poi; // List of Points of Interest (POI) associated with schedule
+    private final long deptTime; // Unix timestamp
+    private final List<POI> poi; // List of Points of Interest (POI) associated with schedule
+    private final Airport airport;
+    private final Terminal terminal;
     // Constructor
-    public Schedule(long deptTime, List<POI> poi) {
+    @JsonCreator
+    public Schedule(@JsonProperty long deptTime,
+                    @JsonProperty Airport airport,
+                    @JsonProperty Terminal terminal) {
         this.deptTime = deptTime; 
-        this.poi = poi; 
-    } 
+        this.poi = new ArrayList<POI>();
+        this.airport = airport;
+        this.terminal = terminal;
+    }
 
     /*
      * inputs a Unix timestamp 
@@ -78,5 +89,59 @@ public class Schedule {
         else {
             throw new NullPointerException("POI can't be null");
         }
+    }
+
+    public Airport getAirport(){
+        return airport;
+    }
+
+    public Terminal getTerminal(){
+        return terminal;
+    }
+
+    public long getDepartureTime(){
+        return deptTime;
+    }
+
+    public void randomSchedule(int numPOIS){
+        ArrayList<POI> possPOIs = (ArrayList<POI>) terminal.getPOIs();
+        if (possPOIs.isEmpty()) {
+            throw new IllegalArgumentException("No POIs in terminal");
+        }
+        if (numPOIS > possPOIs.size()){
+            numPOIS = possPOIs.size();
+        }
+        for (int i = 0; i < numPOIS; i++){
+            int index = (int) (Math.random() * possPOIs.size());
+            POI poi = possPOIs.get(index);
+            addPOI(poi);
+            possPOIs.remove(index);
+        }
+    }
+
+    /*Returns how much time is remaining before flight
+     * input - none
+     * output - string, hours and minutes until departure
+    */
+    public String timeUntilDeparture(){
+        long currentTime = System.currentTimeMillis() / 1000L; // Convert to seconds
+        long secondsRemaining = deptTime - currentTime;
+        if(secondsRemaining <= 0){
+            return "Flight has already departed";
+        }
+        long totalMinutes = secondsRemaining / 60;
+        long hours = totalMinutes / 60;
+        long minutes = totalMinutes % 60;
+        return hours + " hours and " + minutes + " minutes until departure";
+    }
+
+    /*prints when to arrive at airport based on dept time
+     * input - none
+     * General rule is to arrive 3 hours before flight
+     * output - void
+     */
+    public void timeToArriveAtAirport(){
+        long time = deptTime - 10800;
+        printTime(time);
     }
 }

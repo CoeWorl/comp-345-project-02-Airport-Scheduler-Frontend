@@ -1,5 +1,4 @@
 package com.cor.airport;
-import com.cor.airport.AirportController;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

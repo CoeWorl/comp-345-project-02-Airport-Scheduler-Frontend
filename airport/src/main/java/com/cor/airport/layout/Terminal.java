@@ -128,7 +128,7 @@ public class Terminal {
         ArrayList<POI> shops = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                if(p.getType().lowerCase().equals("shop")|| p.getType().lowerCase().equals("store")){
+                if(((Business) p).getType().equalsIgnoreCase("shop")|| ((Business) p).getType().equalsIgnoreCase("store")){
                     shops.add(p);
                 }
             }
@@ -144,11 +144,25 @@ public class Terminal {
         ArrayList<POI> restaurants = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                if(p.getType().lowerCase().equals("restaurant")){
+                if(((Business) p).getType().equalsIgnoreCase("restaurant")){
                     restaurants.add(p);
                 }
             }
         }
         return restaurants;
+    }
+
+     /*returns all gates in terminal
+     * input - none
+     * output - hashmap of all gates in terminal
+     */
+    public HashMap<String, POI> getGates(){
+        HashMap<String, POI> gates = new HashMap<>();
+        for (POI p : poi.values()) {
+            if (p instanceof Gate) {
+                gates.put(p.getName(), p);
+            }
+        }
+        return gates;
     }
 }

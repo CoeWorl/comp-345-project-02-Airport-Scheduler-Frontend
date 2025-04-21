@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+  <head>
+    <title>Preferences Questionnaire</title>
+  </head>
+  <body>
+    <h1>User Preferences Questionnaire</h1>
+
+    <form th:action="@{/api/preferences}" th:object="${form}" method="post">
+      <p>Name: <input type="text" th:field="*{name}" /></p>
+      <p>Username: <input type="text" th:field="*{username}" /></p>
+      <p>Password: <input type="text" th:field="*{password}" /></p>
+      <p>Email: <input type="text" th:field="*{email}" /></p>
+
+      <h3>Overall Preferences</h3>
+      <div
+        th:each="pref : ${T(com.cor.airport.User.Overall_Preferences).values()}"
+      >
+        <label
+          ><input
+            type="checkbox"
+            th:field="*{overallPreferences}"
+            th:value="${pref}" /><span th:text="${pref}"></span></label
+        ><br />
+      </div>
+
+      <h3>Food Preferences</h3>
+      <div
+        th:each="pref : ${T(com.cor.airport.User.Food_Preferences).values()}"
+      >
+        <label
+          ><input
+            type="checkbox"
+            th:field="*{foodPreferences}"
+            th:value="${pref}" /><span th:text="${pref}"></span></label
+        ><br />
+      </div>
+
+      <h3>Beverage Preferences</h3>
+      <div
+        th:each="pref : ${T(com.cor.airport.User.Beverage_Preferences).values()}"
+      >
+        <label
+          ><input
+            type="checkbox"
+            th:field="*{beveragePreferences}"
+            th:value="${pref}" /><span th:text="${pref}"></span></label
+        ><br />
+      </div>
+
+      <h3>Shopping Preferences</h3>
+      <div
+        th:each="pref : ${T(com.cor.airport.User.Shopping_Preferences).values()}"
+      >
+        <label
+          ><input
+            type="checkbox"
+            th:field="*{shoppingPreferences}"
+            th:value="${pref}" /><span th:text="${pref}"></span></label
+        ><br />
+      </div>
+
+      <h3>Recreation Preferences</h3>
+      <div
+        th:each="pref : ${T(com.cor.airport.User.Recreation_Preferences).values()}"
+      >
+        <label
+          ><input
+            type="checkbox"
+            th:field="*{recreationPreferences}"
+            th:value="${pref}" /><span th:text="${pref}"></span></label
+        ><br />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

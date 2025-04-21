@@ -16,7 +16,7 @@ public class LayoutService {
         ObjectMapper mapper = new ObjectMapper();
         System.out.println("Trying to read airport.json...");
 
-        try (InputStream is = getClass().getResourceAsStream("/airport.json")) {
+        try (InputStream is = getClass().getResourceAsStream("/JFK/airport.json")) {
             System.out.println("InputStream is null? " + (is == null));
             if (is == null) {
                 throw new FileNotFoundException("airport.json not found.");

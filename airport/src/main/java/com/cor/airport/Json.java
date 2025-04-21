@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/api")
 public class Json {
-    private static final String FILE_PATH = "src/main/resources/JFK/1.json";
+    private static final String FILE_PATH = "src/main/resources/JFK/airport.json";
 
     public static POI jsonPOI(UUID poiUuid, String airportCode) throws IOException {
         return switch (poiUuid.toString().charAt(0)) {

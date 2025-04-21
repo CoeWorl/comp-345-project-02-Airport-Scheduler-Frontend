@@ -28,7 +28,7 @@ public class ScheduleViewController {
 
         long deptTime = flight.getDeptTime();
 
-        Schedule schedule = new Schedule(deptTime, airport, terminal, flight);
+        Schedule schedule = new Schedule(deptTime, airport, terminal);
         schedule.randomSchedule(3);
 
         model.addAttribute("schedule", schedule);
