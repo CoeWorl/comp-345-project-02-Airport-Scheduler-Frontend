@@ -1,13 +1,13 @@
 package com.cor.airport.layout;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@RestController
-@RequestMapping("/api/layout")
+@Controller
+@RequestMapping("/layout")
 public class LayoutController {
     
     private final LayoutService layoutService;
@@ -22,9 +22,9 @@ public class LayoutController {
     //}
 
 
-    @GetMapping("/api/layout-view")
+    @GetMapping
     public String showLayout(Model model) {
         model.addAttribute("layout", layoutService.getAirportLayout());
-        return "layout"; // layout.html
+        return "layout-page"; // layout-page.html
     }
 }

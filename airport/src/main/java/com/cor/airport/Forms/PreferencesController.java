@@ -16,7 +16,7 @@ import com.cor.airport.User;
 
 
 @Controller
-@RequestMapping("/api/preferences")
+@RequestMapping("/preferences")
 public class PreferencesController {
     
 

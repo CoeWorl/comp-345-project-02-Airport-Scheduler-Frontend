@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Airport 1 layout</title>
+    <title>Airport Layout</title>
     <style>
       svg {
         background-color: #f0f0f0;
@@ -35,9 +35,10 @@
         <p>
           <strong
             th:text="'Terminal ' + ${entry.key} + ': ' + ${entry.value.name}"
-          ></strong>
-          <br />UUID: <span th:text="${entry.value.uuid}"></span> <br />Airport:
-          <span th:text="${entry.value.airport}"></span>
+          ></strong
+          ><br />
+          UUID: <span th:text="${entry.value.uuid}"></span><br />
+          Airport: <span th:text="${entry.value.airport}"></span>
         </p>
 
         <h4>Entrances</h4>
@@ -47,19 +48,20 @@
           </li>
         </ul>
 
-        <h4>Point Of Interests</h4>
+        <h4>Points of Interest</h4>
         <ul>
           <li th:each="poiEntry : ${entry.value.poi}">
             <span th:text="'POI UUID: ' + ${poiEntry.key}"></span> -
-            <span th:text="${poiEntry.value.name}"></span>
+            <span th:text="${poiEntry.value.name ?: 'Unnamed POI'}"></span>
           </li>
         </ul>
 
         <h4>Gates</h4>
         <ul>
-          <li th:each="gate : ${entry.value.Gates}">
-            <span th:text="'Gate UUID: ' + ${gate.uuid}"></span>
-            <br />Name: <span th:text="${gate.name}"></span>
+          <li th:each="gateEntry : ${entry.value.gates}">
+            <span th:text="'Gate UUID: ' + ${gateEntry.key}"></span><br />
+            Name:
+            <span th:text="${gateEntry.value.name ?: 'Unnamed Gate'}"></span>
           </li>
         </ul>
       </li>
