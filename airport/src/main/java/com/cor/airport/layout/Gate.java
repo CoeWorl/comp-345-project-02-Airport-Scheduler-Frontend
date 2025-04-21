@@ -26,4 +26,3 @@ public class Gate extends POI{
         return isEntranceToTerminal;
     }
 }
-

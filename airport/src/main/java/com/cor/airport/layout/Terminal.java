@@ -1,12 +1,13 @@
 package com.cor.airport.layout;
 
-import com.cor.airport.Json;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.cor.airport.Json;
+
 import java.io.IOException;
 import java.util.*;
-
+//test
 public class Terminal {
     private final String name;
     private final UUID uuid;
@@ -41,7 +42,7 @@ public class Terminal {
 
         this.entrances = new ArrayList<>();
         for (String entranceUuid : entranceUuids) {
-            Gate gate = Json.fromJsonFile(this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
+            Gate gate = Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + entranceUuid + ".json", Gate.class);
             this.entrances.add(gate);
             this.poi.put(gate.getUuid(), gate);
         }
@@ -53,10 +54,10 @@ public class Terminal {
             POI poi;
             // Create POI object (read from file)
             poi = switch (poiUuid.toString().charAt(0)) {
-                case 'a' -> Json.fromJsonFile( this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
-                case 'b' -> Json.fromJsonFile( this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
-                case 'c' -> Json.fromJsonFile( this.airport + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
-                case 'e' -> Json.fromJsonFile( this.airport + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
+                case 'a' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Gate/" + poiUuid + ".json", Gate.class);
+                case 'b' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Business/" + poiUuid + ".json", Business.class);
+                case 'c' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Restroom/" + poiUuid + ".json", Restroom.class);
+                case 'e' -> Json.fromJsonFile("src/test/resources/" + this.airport + "/POI/Stairs/" + poiUuid + ".json", Stairs.class);
                 default -> null;
             };
             if (poi==null) System.err.println("Unknown POI: " + poiUuid);
@@ -119,21 +120,33 @@ public class Terminal {
         return new HashMap<>(poi_connections);
     }
 
+    /*returns all shops in terminal
+     * inout - none
+     * output - list of all shops in terminal
+     */
     public ArrayList<POI> getShops() {
         ArrayList<POI> shops = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                shops.add(p);
+                if(p.getType().lowerCase().equals("shop")|| p.getType().lowerCase().equals("store")){
+                    shops.add(p);
+                }
             }
         }
         return shops;
     }
 
+    /*returns all restaurants in terminal
+     * input - none
+     * output - list of all restaurants in terminal
+     */
     public ArrayList<POI> getRestaurants() {
         ArrayList<POI> restaurants = new ArrayList<>();
         for (POI p : poi.values()) {
             if (p instanceof Business) {
-                restaurants.add(p);
+                if(p.getType().lowerCase().equals("restaurant")){
+                    restaurants.add(p);
+                }
             }
         }
         return restaurants;

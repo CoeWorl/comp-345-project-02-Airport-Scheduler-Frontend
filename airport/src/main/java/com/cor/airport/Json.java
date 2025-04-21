@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.UUID;
 
@@ -53,13 +54,11 @@ public class Json {
     public static <T> T fromJsonFile(String filename, Class<? extends T> classToBeCreated) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        ClassLoader classLoader = Json.class.getClassLoader();
-        try (var is = classLoader.getResourceAsStream(filename)){
-            if (is == null) {
-                throw new IOException("File not found: " + filename);
-            }
-            return  mapper.readValue(is, classToBeCreated);
+        InputStream is = Json.class.getClassLoader().getResourceAsStream(filename);
+        if (is == null) {
+            throw new IOException("File not found: " + filename);
         }
+        return mapper.readValue(is, classToBeCreated);
     }
 
 
