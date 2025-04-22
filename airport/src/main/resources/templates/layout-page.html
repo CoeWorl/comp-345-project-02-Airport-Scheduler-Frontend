@@ -52,7 +52,9 @@
         <ul>
           <li th:each="poiEntry : ${entry.value.poi}">
             <span th:text="'POI UUID: ' + ${poiEntry.key}"></span> -
-            <span th:text="${poiEntry.value.name ?: 'Unnamed POI'}"></span>
+            <span
+              th:text="${poiEntry.value.name != null ? poiEntry.value.name : 'Unnamed POI'}"
+            ></span>
           </li>
         </ul>
 
@@ -61,7 +63,9 @@
           <li th:each="gateEntry : ${entry.value.gates}">
             <span th:text="'Gate UUID: ' + ${gateEntry.key}"></span><br />
             Name:
-            <span th:text="${gateEntry.value.name ?: 'Unnamed Gate'}"></span>
+            <span
+              th:text="${gateEntry.value.name != null ? gateEntry.value.name : 'Unnamed Gate'}"
+            ></span>
           </li>
         </ul>
       </li>

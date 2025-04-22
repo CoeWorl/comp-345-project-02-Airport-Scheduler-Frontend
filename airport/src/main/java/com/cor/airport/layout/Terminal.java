@@ -99,6 +99,10 @@ public class Terminal {
         return entrances;
     }
 
+    public Map<UUID, POI> getPoi() {
+    return poi;
+    }
+
     public POI getPOI(UUID uuid) {
         for (UUID id : poi_connections.keySet()) {
             if (id.equals(uuid)) {
@@ -164,5 +168,9 @@ public class Terminal {
             }
         }
         return gates;
+    }
+
+    public String getAirport() {
+        return airport;
     }
 }

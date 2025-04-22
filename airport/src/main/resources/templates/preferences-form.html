@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmls:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Preferences Questionnaire</title>
   </head>
@@ -10,7 +10,7 @@
       <p>Name: <input type="text" th:field="*{name}" /></p>
       <p>Username: <input type="text" th:field="*{username}" /></p>
       <p>Password: <input type="text" th:field="*{password}" /></p>
-      <p>Email: <input type="text" th:field="*{email}" /></p>
+      <p>Email: <input type="text" th:field="*{email}" required /></p>
 
       <h3>Overall Preferences</h3>
       <div

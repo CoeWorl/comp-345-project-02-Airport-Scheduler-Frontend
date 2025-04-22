@@ -23,6 +23,9 @@ public class UserPreferencesForm {
     private ArrayList<User.Shopping_Preferences> shoppingPreferences = new ArrayList<>();
     private ArrayList<User.Recreation_Preferences> recreationPreferences = new ArrayList<>();
 
+    public UserPreferencesForm() {
+        // Default constructor
+    }
 
     public UserPreferencesForm(String name, String username, String password, String email) {
         this.name = name;
@@ -34,29 +37,56 @@ public class UserPreferencesForm {
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getUsername() {
         return username;
+    }
+    public void setUsername(String username){
+        this.username = username;
     }
     public String getPassword() {
         return password;
     }
+    public void setPassword(String password){
+        this.password = password;
+    }
     public String getEmail() {
         return email;
     }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public ArrayList<Overall_Preferences> getOverall_preferences(){
+    public ArrayList<Overall_Preferences> getOverallPreferences(){
         return this.overallPreferences;
     }
-    public ArrayList<Food_Preferences> getFood_preferences(){
+    public void setOverallPreferences(ArrayList<Overall_Preferences> overall_Preferences){
+        this.overallPreferences = overall_Preferences;
+    }
+    public ArrayList<Food_Preferences> getFoodPreferences(){
         return this.foodPreferences;
     }
-    public  ArrayList<Beverage_Preferences> getBeverage_preferences(){
+    public void setFoodPreferences(ArrayList<Food_Preferences> food_Preferences){
+        this.foodPreferences = food_Preferences;
+    }
+    public  ArrayList<Beverage_Preferences> getBeveragePreferences(){
         return this.beveragePreferences;
     }
-    public ArrayList<Shopping_Preferences> getShopping_preferences(){
+    public void setBeveragePreferences(ArrayList<Beverage_Preferences> beverage_Preferences){
+        this.beveragePreferences = beverage_Preferences;
+    }
+    public ArrayList<Shopping_Preferences> getShoppingPreferences(){
         return this.shoppingPreferences;
     }
-    public ArrayList<Recreation_Preferences> getRecreation_preferences(){
+    public void setShoppingPreferences(ArrayList<Shopping_Preferences> shopping_Preferences){
+        this.shoppingPreferences = shopping_Preferences;
+    }
+    public ArrayList<Recreation_Preferences> getRecreationPreferences(){
         return this.recreationPreferences;
+    }
+    public void setRecreationPreferences(ArrayList<Recreation_Preferences> recreation_Preferences){
+        this.recreationPreferences = recreation_Preferences;
     }
 }
